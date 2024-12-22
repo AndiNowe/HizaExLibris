@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiza Ex Libris</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+          integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <style>
+        .card-img-top {
+            width: 150px;  /* Fixed width */
+            height: 200px; /* Fixed height */
+            object-fit: contain; /* Ensures the image covers the area without stretching */
+            margin: 0 auto; /* Centers the image */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-success text-white text-center py-4 mb-4">
+        <h1>Hiza Ex Libris</h1>
+    </header>
+
+    <!-- Progress Box -->
+    <div class="container text-center my-4">
+        <div class="alert alert-secondary" role="alert">
+            Progress to Library: {{ book_count }}/1000
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="container text-center mb-4">
+        <form class="form-inline justify-content-center">
+            <input type="text" class="form-control w-50" placeholder="Search for a book...">
+            <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </form>
+    </div>
+
+    <!-- Book List -->
+    <div class="container">
+        <div class="row">
+            {% for book in books %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    {% if book.cover %}
+                    <img src="{{ book.cover.url }}" class="card-img-top" alt="Cover of {{ book.name }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/150x200?text=No+Image" class="card-img-top" alt="No cover available">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.name }}</h5>
+                        <p class="card-text">by <strong>{{ book.author.name }}</strong></p>
+                        <p class="card-text text-muted" style="font-size: 0.9em;">{{ book.year }}, {{ book.language }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBkW2jJoZn4pb8SM3Kl5fId1yS9eS56jK7HE77aD" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0eXmfWVx1FD6g9cga9Q64KlTp/5rYGjUEN5BZp6YbIUMSTjUR
