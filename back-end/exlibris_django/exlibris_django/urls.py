@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from exlibris import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.book_list, name='book_list'),  # Base URL for the book list and search
+    path('book/<uuid:id>/', views.book_detail, name='book_detail'),  # URL for a specific book by ID
 ]
+
+# Add this at the bottom to serve media files
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
