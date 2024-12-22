@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.name }}</title>
+</head>
+<body>
+    <h1>{{ book.name }}</h1>
+    <p><strong>Author:</strong> {{ book.author.name }}</p>
+    <p><strong>Year:</strong> {{ book.year }}</p>
+    <p><strong>Language:</strong> {{ book.language }}</p>
+    <p><strong>Genre:</strong> {{ book.genre.name }}</p>
+    {% if book.cover %}
+        <img src="{{ book.cover.url }}" alt="Cover of {{ book.name }}">
+    {% endif %}
+    <a href="{% url 'book_list' %}">Back to list</a>
+</body>
+</html>
